@@ -1,3 +1,4 @@
+import { EmployeeSService } from './services/employee-s.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -36,8 +38,9 @@ import {MatIconModule} from '@angular/material/icon';
     AdminLayoutComponent,
 
 
+
   ],
-  providers: [],
+  providers: [EmployeeSService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

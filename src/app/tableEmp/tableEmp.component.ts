@@ -1,4 +1,8 @@
+import { EmployeeSService } from './../services/employee-s.service';
 import { Component, OnInit } from '@angular/core';
+import { Employee} from './../models/employee'
+import { response } from 'express';
+import { HttpErrorResponse } from '@angular/common/http';
 
 declare interface TableData {
   headerRow: string[];
@@ -11,11 +15,24 @@ declare interface TableData {
   styleUrls: ['./tableEmp.component.css']
 })
 export class TableEmpComponent implements OnInit {
-
+  
+  public employees:Employee[];
   public tableData1: TableData;
 
 
-constructor() { }
+constructor( private employeeSService : EmployeeSService) { }
+
+  public getEmployees() : void {
+    this.employeeSService.getEmployees().subscribe(
+     ( response: Employee[] )=>{
+      this.employees = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert (error.message);
+      }
+
+    );
+  }
 
 ngOnInit() {
     this.tableData1 = {
@@ -29,6 +46,8 @@ ngOnInit() {
             ['6', 'Mason Porter', 'Chile', 'Gloucester', '$78,615']
         ]
     };
+
+    this.getEmployees();
 }
 
 }
